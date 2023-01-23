@@ -1,18 +1,30 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Req } from "@nestjs/common";
+import { Body, Controller, ForbiddenException, Get, HttpCode, HttpStatus, Param, Post, Req } from "@nestjs/common";
+import { Request } from "express";
+import { catchError, of } from "rxjs";
 import { AuthService } from "./auth.service";
-import { SignUpRequest } from "./dto";
+import { SignInWithEmailRequest } from "./requests";
+import { SignUpWithEmailRequest } from "./requests/sign-up-with-email.request";
+import { SignUpWithPhoneNumberRequest } from "./requests/sign-up-with-phone-number.request";
 
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) { }
-    @Post("signup")
-    async signUp(@Body() signUpRequest: SignUpRequest) {
-        return this.authService.signUp(signUpRequest);
+
+    // Auth with Email
+    @Post("signup/email")
+    async signUpWithEmail(@Body() signUpRequest: SignUpWithEmailRequest) {
+        return this.authService.signUpWithEmail(signUpRequest);
     }
 
-    // @HttpCode(HttpStatus.OK)
-    // @Post("signin")
-    // signIn(@Body() signInRequest: SignInDto) {
-    //     return this.authService.signIn(signInRequest);
-    // }
+    @HttpCode(HttpStatus.OK)
+    @Post("signin/email")
+    signInWithEmail(@Body() signInRequest: SignInWithEmailRequest) {
+        return this.authService.signInWithEmail(signInRequest).pipe(catchError((caughtError) => of(caughtError)));
+    }
+
+    // Auth with Phone Number
+    @Post("signup/phone")
+    async signUpWithPhoneNumber(@Body() request: SignUpWithPhoneNumberRequest) {
+        return this.authService.signUpWithPhoneNumber(request);
+    }
 }

@@ -1,13 +1,32 @@
 import { Body, Inject, Injectable, Req } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { SignUpRequest } from './dto';
-import { SignUpEvent } from './events/signup-event';
+import { catchError, map, of } from 'rxjs';
+import { SignInWithEmailRequest, SignUpWithEmailRequest, SignUpWithPhoneNumberRequest, } from './requests';
 
 @Injectable()
 export class AuthService {
-    constructor(@Inject("AUTH") private readonly authClient: ClientProxy) { }
+    constructor(@Inject("AUTH_CLIENT") private readonly authClient: ClientProxy) { }
 
-    signUp(signUpRequest: SignUpRequest) {
-        return this.authClient.send({ cmd: "userSignUp" }, new SignUpEvent(signUpRequest.email, signUpRequest.password))
+    // Auth with Email
+    signUpWithEmail(signUpRequest: SignUpWithEmailRequest) {
+        return this.authClient
+            .send({ cmd: "userSignUpWithEmail" }, { email: signUpRequest.email, password: signUpRequest.password })
     }
+
+    signInWithEmail(signInRequest: SignInWithEmailRequest) {
+        return this.authClient
+            .send({ cmd: "userSignInWithEmail" }, { email: signInRequest.email, password: signInRequest.password })
+    }
+
+    // Auth with Phone Number
+    signUpWithPhoneNumber(signUpRequest: SignUpWithPhoneNumberRequest) {
+        return this.authClient
+        .send({ cmd: "userSignUpWithPhoneNumber" }, {...signUpRequest})
+        .pipe(catchError((err) => of(err).pipe(map(e => console.log(e)))))
+    }
+
+    // signInWithPhoneNumber(signInRequest: SignInRequest) {
+    //         return this.authClient
+    //         .send({ cmd: "userSignInWithPhoneNumber" }, new SignInEvent(signInRequest.email, signInRequest.password))
+    // }
 }

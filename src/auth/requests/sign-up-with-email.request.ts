@@ -1,4 +1,4 @@
-export class SignUpRequest {
+export class SignUpWithEmailRequest {
   email: string;
   password: string;
 }

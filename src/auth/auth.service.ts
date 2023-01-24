@@ -20,9 +20,11 @@ export class AuthService {
 
     // Auth with Phone Number
     signUpWithPhoneNumber(signUpRequest: SignUpWithPhoneNumberRequest) {
+        // console.log(this.authClient);
+
         return this.authClient
-        .send({ cmd: "userSignUpWithPhoneNumber" }, {...signUpRequest})
-        .pipe(catchError((err) => of(err).pipe(map(e => console.log(e)))))
+            .send({ cmd: "userSignUpWithPhoneNumber" }, { phoneNumber: signUpRequest.phoneNumber, accessToken: signUpRequest.accessToken })
+        // .pipe(catchError((err) => of(err).pipe(map(e => console.log(e)))))
     }
 
     // signInWithPhoneNumber(signInRequest: SignInRequest) {

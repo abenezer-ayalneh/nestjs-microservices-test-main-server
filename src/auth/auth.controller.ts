@@ -12,7 +12,9 @@ export class AuthController {
   // Auth with Email
   @Post('signup/email')
   async signUpWithEmail(@Body() signUpRequest: SignUpWithEmailRequest) {
-    return this.authService.signUpWithEmail(signUpRequest);
+    return this.authService
+      .signUpWithEmail(signUpRequest)
+      .pipe(catchError((caughtError) => of(caughtError)));
   }
 
   @HttpCode(HttpStatus.OK)
@@ -26,6 +28,8 @@ export class AuthController {
   // Auth with Phone Number
   @Post('signup/phone')
   async signUpWithPhoneNumber(@Body() request: SignUpWithPhoneNumberRequest) {
-    return this.authService.signUpWithPhoneNumber(request);
+    return this.authService
+      .signUpWithPhoneNumber(request)
+      .pipe(catchError((caughtError) => of(caughtError)));
   }
 }

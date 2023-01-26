@@ -4,13 +4,15 @@ import { Request } from 'express';
 
 @Injectable()
 export class UserService {
-    constructor(@Inject("AUTH_CLIENT") private readonly authClient: ClientProxy) { }
+  constructor(
+    @Inject('AUTH_CLIENT') private readonly authClient: ClientProxy,
+  ) {}
 
-    me() {        
-        try{
-            return this.authClient.send({ cmd: "me" }, {});
-        }catch(exception){
-            console.log("exception exception exception exception");
-        }
+  me() {
+    try {
+      return this.authClient.send({ cmd: 'me' }, {});
+    } catch (exception) {
+      console.log('exception exception exception exception');
     }
+  }
 }

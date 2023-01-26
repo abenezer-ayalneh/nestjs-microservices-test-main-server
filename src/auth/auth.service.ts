@@ -3,7 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import {
   SignInWithEmailRequest,
   SignUpWithEmailRequest,
-  SignUpWithPhoneNumberRequest
+  SignUpWithPhoneNumberRequest,
 } from './requests';
 
 @Injectable()

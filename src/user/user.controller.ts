@@ -1,24 +1,15 @@
-import {
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Req,
-  UseGuards,
-} from '@nestjs/common';
-import { RpcException } from '@nestjs/microservices';
+import { Controller, Get, Req, Inject, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards';
 import { UserService } from './user.service';
+import { Request } from 'express';
 
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get('me')
   me(@Req() request: Request) {
-    try {
-      return this.userService.me();
-    } catch (e) {
-      console.log('Me exception');
-    }
+    return this.userService.me(request);
   }
 }

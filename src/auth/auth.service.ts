@@ -12,11 +12,6 @@ export class AuthService {
     @Inject('AUTH_CLIENT') private readonly authClient: ClientProxy,
   ) {}
 
-  // Test
-  exceptionTest() {
-    return this.authClient.send({ cmd: 'exceptionTest' }, {});
-  }
-
   // Auth with Email
   signUpWithEmail(signUpRequest: SignUpWithEmailRequest) {
     return this.authClient.send(
@@ -31,11 +26,8 @@ export class AuthService {
       { email: signInRequest.email, password: signInRequest.password },
     );
   }
-
   // Auth with Phone Number
   signUpWithPhoneNumber(signUpRequest: SignUpWithPhoneNumberRequest) {
-    // console.log(this.authClient);
-
     return this.authClient.send(
       { cmd: 'userSignUpWithPhoneNumber' },
       {

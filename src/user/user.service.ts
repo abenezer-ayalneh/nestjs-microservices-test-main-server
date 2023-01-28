@@ -1,6 +1,9 @@
-import { Inject, Injectable, Req } from '@nestjs/common';
+import { Body, HttpException, Inject, Injectable, Req } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Request } from 'express';
+import { catchError } from 'rxjs';
+import { GetUser } from 'src/auth/decorator';
+import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
 
 @Injectable()
 export class UserService {
@@ -8,11 +11,7 @@ export class UserService {
     @Inject('AUTH_CLIENT') private readonly authClient: ClientProxy,
   ) {}
 
-  me() {
-    try {
-      return this.authClient.send({ cmd: 'me' }, {});
-    } catch (exception) {
-      console.log('exception exception exception exception');
-    }
+  me(@Req() request: Request) {
+    return request.user;
   }
 }

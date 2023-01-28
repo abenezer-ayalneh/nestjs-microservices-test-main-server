@@ -1,7 +1,15 @@
-import { Body, Controller, Get, HttpException, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { catchError } from 'rxjs';
 import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
 import { AuthService } from './auth.service';
+import { JwtAuthGuard } from './guards';
 import { SignInWithEmailRequest } from './requests';
 import { SignUpWithEmailRequest } from './requests/sign-up-with-email.request';
 import { SignUpWithPhoneNumberRequest } from './requests/sign-up-with-phone-number.request';
@@ -10,15 +18,6 @@ import { SignUpWithPhoneNumberRequest } from './requests/sign-up-with-phone-numb
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  // Test route
-  @Get('test')
-  test() {
-    return this.authService.exceptionTest().pipe(
-      catchError((caughtError: RpcExceptionType) => {
-        throw new HttpException(caughtError.message, caughtError.code);
-      }),
-    );
-  }
   // Auth with Email
   @Post('signup/email')
   async signUpWithEmail(@Body() signUpRequest: SignUpWithEmailRequest) {

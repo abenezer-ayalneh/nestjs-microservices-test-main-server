@@ -3,9 +3,11 @@ import {
   Controller,
   Get,
   HttpException,
+  Inject,
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { catchError } from 'rxjs';
 import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
 import { AuthService } from './auth.service';
@@ -23,7 +25,7 @@ export class AuthController {
   async signUpWithEmail(@Body() signUpRequest: SignUpWithEmailRequest) {
     return this.authService.signUpWithEmail(signUpRequest).pipe(
       catchError((caughtError: RpcExceptionType) => {
-        throw new HttpException(caughtError.message, caughtError.code);
+        throw new HttpException(caughtError.message, caughtError.statusCode);
       }),
     );
   }
@@ -32,7 +34,7 @@ export class AuthController {
   signInWithEmail(@Body() signInRequest: SignInWithEmailRequest) {
     return this.authService.signInWithEmail(signInRequest).pipe(
       catchError((caughtError: RpcExceptionType) => {
-        throw new HttpException(caughtError.message, caughtError.code);
+        throw new HttpException(caughtError.message, caughtError.statusCode);
       }),
     );
   }
@@ -42,7 +44,7 @@ export class AuthController {
   async signUpWithPhoneNumber(@Body() request: SignUpWithPhoneNumberRequest) {
     return this.authService.signUpWithPhoneNumber(request).pipe(
       catchError((caughtError: RpcExceptionType) => {
-        throw new HttpException(caughtError.message, caughtError.code);
+        throw new HttpException(caughtError.message, caughtError.statusCode);
       }),
     );
   }

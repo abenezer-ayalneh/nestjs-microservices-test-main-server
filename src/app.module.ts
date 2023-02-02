@@ -1,18 +1,10 @@
-import { Global, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
-import {
-  ClientProxyFactory,
-  ClientsModule,
-  Transport,
-} from '@nestjs/microservices';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
-import { AuthService } from './auth/auth.service';
-import { JwtAuthGuard } from './auth/guards';
-import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigurationModule } from './configuration/configuration.module';
 
 @Module({
   imports: [
@@ -20,27 +12,24 @@ import { ConfigModule } from '@nestjs/config';
       // To be able to use the '.env' file
       isGlobal: true, // To make it available to all modules (globally)
     }),
-    ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 5,
+    // For rate limiting purposes
+    ThrottlerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        ttl: config.get('THROTTLE_TTL'), // The time-to-live in seconds
+        limit: config.get('THROTTLE_LIMIT'), // The number of trials in the ttl range
+      }),
     }),
     UserModule,
     AuthModule,
+    ConfigurationModule,
   ],
   providers: [
     {
       provide: APP_GUARD, // to bind the throttle guard globally,
       useClass: ThrottlerGuard,
     },
-    // {
-    //   provide: 'AUTH_CLIENT',
-    //   useValue: ClientProxyFactory.create({
-    //     transport: Transport.TCP,
-    //     options: {
-    //       port: 3001,
-    //     },
-    //   }),
-    // },
   ],
 })
 export class AppModule {}

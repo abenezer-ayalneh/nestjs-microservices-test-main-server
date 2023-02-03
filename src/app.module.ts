@@ -5,6 +5,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ConfigurationModule } from './configuration/configuration.module';
+import { GlobalModule } from './global/global.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ConfigurationModule } from './configuration/configuration.module';
     UserModule,
     AuthModule,
     ConfigurationModule,
+    GlobalModule,
   ],
   providers: [
     {

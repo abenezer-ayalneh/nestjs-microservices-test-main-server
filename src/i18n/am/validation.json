@@ -1,3 +1,8 @@
 {
-  "APPLICATION_ID_EMPTY": "የመተግበሪያው መለያ ባዶ መሆን የለበትም"
+  "APPLICATION_ID_SHOULD_BE_NUMBER": "የመተገበሪያው መለያ ቁጥር መሆን አለበት",
+  "APPLICATION_ID_SHOULD_NOT_BE_EMPTY": "የመተገበሪያው መለያ ባዶ መሆን የለበትም",
+  "CONFIGURATION_NAME_SHOULD_BE_STRING": "የውቅሩ ስም የፊደላት ስብስብ መሆን አለበት",
+  "CONFIGURATION_NAME_SHOULD_NOT_BE_EMPTY": "የውቅሩ ስም ባዶ መሆን የለበትም",
+  "CONFIGURATION_VALUE_SHOULD_BE_STRING": "የውቅሩ ዋጋ የፊደላት ስብስብ መሆን አለበት",
+  "CONFIGURATION_VALUE_SHOULD_NOT_BE_EMPTY": "የውቅሩ ስም ባዶ መሆን የለበትም"
 }

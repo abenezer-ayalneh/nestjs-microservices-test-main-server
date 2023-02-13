@@ -1,3 +1,8 @@
 {
-  "APPLICATION_ID_EMPTY": "Application ID must be a number"
+  "APPLICATION_ID_SHOULD_BE_NUMBER": "Application ID should be a number",
+  "APPLICATION_ID_SHOULD_NOT_BE_EMPTY": "Application ID must not be empty",
+  "CONFIGURATION_NAME_SHOULD_BE_STRING": "Configuration name should not be string",
+  "CONFIGURATION_NAME_SHOULD_NOT_BE_EMPTY": "Configuration name must not be empty",
+  "CONFIGURATION_VALUE_SHOULD_BE_STRING": "Configuration value should not be string",
+  "CONFIGURATION_VALUE_SHOULD_NOT_BE_EMPTY": "Configuration value must not be empty"
 }

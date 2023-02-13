@@ -2,16 +2,28 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { I18nModule, QueryResolver } from 'nestjs-i18n';
+import * as path from 'path';
 import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { GlobalModule } from './global/global.module';
+import { SearchModule } from './search/search.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       // To be able to use the '.env' file
       isGlobal: true, // To make it available to all modules (globally)
+    }),
+    // For Localization
+    I18nModule.forRoot({
+      fallbackLanguage: 'en',
+      loaderOptions: {
+        path: path.join(__dirname, '/i18n/'),
+        watch: true,
+      },
+      resolvers: [new QueryResolver(['lang'])],
     }),
     // For rate limiting purposes
     ThrottlerModule.forRootAsync({
@@ -26,6 +38,7 @@ import { GlobalModule } from './global/global.module';
     AuthModule,
     ConfigurationModule,
     GlobalModule,
+    SearchModule,
   ],
   providers: [
     {

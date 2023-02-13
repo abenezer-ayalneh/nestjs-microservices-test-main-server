@@ -19,10 +19,14 @@ export class ConfigurationService {
   }
 
   getConfigurationEntry(request: GetConfigurationRequest) {
-    return this.configClient.send(
-      { cmd: 'getConfigurationEntry' },
-      { ...request },
-    );
+    try {
+      return this.configClient.send(
+        { cmd: 'getConfigurationEntry' },
+        { ...request },
+      );
+    } catch (error) {
+      console.log('error error error');
+    }
   }
 
   addApplicationEntry(request: AddConfigurationRequest) {

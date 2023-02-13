@@ -5,4 +5,6 @@ export class AddConfigurationRequest {
 
 export class GetConfigurationRequest {
   name: string;
+  lang: string;
+  applicationId: number;
 }

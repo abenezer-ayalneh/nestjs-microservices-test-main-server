@@ -1,8 +1,13 @@
 {
-  "APPLICATION_ID_SHOULD_BE_NUMBER": "Application ID should be a number",
-  "APPLICATION_ID_SHOULD_NOT_BE_EMPTY": "Application ID must not be empty",
-  "CONFIGURATION_NAME_SHOULD_BE_STRING": "Configuration name should not be string",
-  "CONFIGURATION_NAME_SHOULD_NOT_BE_EMPTY": "Configuration name must not be empty",
-  "CONFIGURATION_VALUE_SHOULD_BE_STRING": "Configuration value should not be string",
-  "CONFIGURATION_VALUE_SHOULD_NOT_BE_EMPTY": "Configuration value must not be empty"
+  "APPLICATION_ID_SHOULD_BE_NUMBER": "The application ID should be a number",
+  "APPLICATION_ID_SHOULD_NOT_BE_EMPTY": "The application ID must not be empty",
+  "CONFIGURATION_NAME_SHOULD_BE_STRING": "The configuration name should not be string",
+  "CONFIGURATION_NAME_SHOULD_NOT_BE_EMPTY": "The configuration name must not be empty",
+  "CONFIGURATION_VALUE_SHOULD_BE_STRING": "The configuration value should not be string",
+  "CONFIGURATION_VALUE_SHOULD_NOT_BE_EMPTY": "The configuration value must not be empty",
+
+  "EMAIL_SHOULD_BE_VALID": "The email should be a valid email",
+  "EMAIL_SHOULD_NOT_BE_EMPTY": "The email should not be empty",
+  "PASSWORD_SHOULD_NOT_BE_EMPTY": "The password should not be empty",
+  "PASSWORD_SHOULD_BE_STRING": "The password should be a string"
 }

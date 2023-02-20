@@ -9,6 +9,7 @@ import { ConfigurationModule } from './configuration/configuration.module';
 import { GlobalModule } from './global/global.module';
 import { SearchModule } from './search/search.module';
 import { UserModule } from './user/user.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { UserModule } from './user/user.module';
     ConfigurationModule,
     GlobalModule,
     SearchModule,
+    MailModule,
   ],
   providers: [
     {

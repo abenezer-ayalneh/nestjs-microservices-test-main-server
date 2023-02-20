@@ -1,6 +1,15 @@
-import { Body, Controller, HttpException, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  Inject,
+  OnModuleInit,
+  Post,
+} from '@nestjs/common';
+import { ClientGrpc } from '@nestjs/microservices';
 import { I18nService } from 'nestjs-i18n';
-import { catchError } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
 import { AuthService } from './auth.service';
 import { SignInWithEmailRequest } from './requests';

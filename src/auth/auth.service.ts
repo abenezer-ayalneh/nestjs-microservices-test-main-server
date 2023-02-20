@@ -1,39 +1,51 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { ClientGrpc } from '@nestjs/microservices';
+import { I18nService } from 'nestjs-i18n';
+import { Observable } from 'rxjs';
 import {
   SignInWithEmailRequest,
   SignUpWithEmailRequest,
   SignUpWithPhoneNumberRequest,
 } from './requests';
 
+interface AuthGrpcService {
+  signUpWithEmail(data: { email: string; password: string }): Observable<any>;
+  signInWithEmail(data: { email: string; password: string }): Observable<any>;
+  signUpWithPhoneNumber(data: { accessToken: string }): Observable<any>;
+}
 @Injectable()
-export class AuthService {
+export class AuthService implements OnModuleInit {
+  private authGrpcService: AuthGrpcService;
+
   constructor(
-    @Inject('AUTH_CLIENT') private readonly authClient: ClientProxy,
+    @Inject('AUTH_CLIENT') private authClient: ClientGrpc,
+    private i18n: I18nService,
   ) {}
+
+  onModuleInit() {
+    this.authGrpcService =
+      this.authClient.getService<AuthGrpcService>('AuthGrpcService');
+  }
 
   // Auth with Email
   signUpWithEmail(signUpRequest: SignUpWithEmailRequest) {
-    return this.authClient.send(
-      { cmd: 'userSignUpWithEmail' },
-      { email: signUpRequest.email, password: signUpRequest.password },
-    );
+    return this.authGrpcService.signUpWithEmail({
+      email: signUpRequest.email,
+      password: signUpRequest.password,
+    });
   }
 
   signInWithEmail(signInRequest: SignInWithEmailRequest) {
-    return this.authClient.send(
-      { cmd: 'userSignInWithEmail' },
-      { email: signInRequest.email, password: signInRequest.password },
-    );
+    return this.authGrpcService.signInWithEmail({
+      email: signInRequest.email,
+      password: signInRequest.password,
+    });
   }
+
   // Auth with Phone Number
   signUpWithPhoneNumber(signUpRequest: SignUpWithPhoneNumberRequest) {
-    return this.authClient.send(
-      { cmd: 'userSignUpWithPhoneNumber' },
-      {
-        phoneNumber: signUpRequest.phoneNumber,
-        accessToken: signUpRequest.accessToken,
-      },
-    );
+    return this.authGrpcService.signUpWithPhoneNumber({
+      accessToken: signUpRequest.accessToken,
+    });
   }
 }

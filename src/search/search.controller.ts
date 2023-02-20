@@ -1,11 +1,19 @@
-import { Controller, Get, HttpException, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpException,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { catchError } from 'rxjs';
+import { JwtAuthGuard } from 'src/auth/guards';
 import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
 import { SearchByNameRequest } from './requests/search.request';
 import { SearchService } from './search.service';
 
 @Controller('search')
+@UseGuards(JwtAuthGuard)
 export class SearchController {
   constructor(
     private searchService: SearchService,

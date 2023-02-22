@@ -9,5 +9,8 @@
   "EMAIL_SHOULD_BE_VALID": "The email should be a valid email",
   "EMAIL_SHOULD_NOT_BE_EMPTY": "The email should not be empty",
   "PASSWORD_SHOULD_NOT_BE_EMPTY": "The password should not be empty",
-  "PASSWORD_SHOULD_BE_STRING": "The password should be a string"
+  "PASSWORD_SHOULD_BE_STRING": "The password should be a string",
+
+  "USER_NOT_FOUND": "The user is not found",
+  "CREDENTIAL_INCORRECT": "The credential is incorrect"
 }

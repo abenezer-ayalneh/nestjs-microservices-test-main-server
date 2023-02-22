@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { join } from 'path';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
@@ -8,9 +9,10 @@ import { UserService } from './user.service';
     ClientsModule.register([
       {
         name: 'USER_CLIENT',
-        transport: Transport.TCP,
+        transport: Transport.GRPC,
         options: {
-          port: 3005,
+          package: 'user',
+          protoPath: join(__dirname, 'proto/user.proto'),
         },
       },
     ]),

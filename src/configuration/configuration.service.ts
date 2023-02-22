@@ -1,38 +1,40 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { ClientGrpc } from '@nestjs/microservices';
+import { Observable } from 'rxjs';
 import {
   AddConfigurationRequest,
   GetConfigurationRequest,
 } from './requests/configuration.request';
 
+interface ConfigGrpcService {
+  addConfigurationEntry(data: { name: string; value: string }): Observable<any>;
+  getConfigurationEntry(data: {
+    name: string;
+    lang: string;
+    applicationId: number;
+  }): Observable<any>;
+  addApplicationEntry(data: { name: string; value: string }): Observable<any>;
+}
 @Injectable()
-export class ConfigurationService {
-  constructor(
-    @Inject('CONFIG_CLIENT') private readonly configClient: ClientProxy,
-  ) {}
+export class ConfigurationService implements OnModuleInit {
+  private configGrpcService: ConfigGrpcService;
+
+  constructor(@Inject('CONFIG_CLIENT') private configClient: ClientGrpc) {}
+
+  onModuleInit() {
+    this.configGrpcService =
+      this.configClient.getService<ConfigGrpcService>('ConfigGrpcService');
+  }
 
   addConfigurationEntry(request: AddConfigurationRequest) {
-    return this.configClient.send(
-      { cmd: 'addConfigurationEntry' },
-      { ...request },
-    );
+    return this.configGrpcService.addConfigurationEntry(request);
   }
 
   getConfigurationEntry(request: GetConfigurationRequest) {
-    try {
-      return this.configClient.send(
-        { cmd: 'getConfigurationEntry' },
-        { ...request },
-      );
-    } catch (error) {
-      console.log('error error error');
-    }
+    return this.configGrpcService.getConfigurationEntry(request);
   }
 
   addApplicationEntry(request: AddConfigurationRequest) {
-    return this.configClient.send(
-      { cmd: 'addApplicationEntry' },
-      { ...request },
-    );
+    return this.configGrpcService.addApplicationEntry(request);
   }
 }

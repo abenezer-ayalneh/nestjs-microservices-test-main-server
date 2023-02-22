@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { join } from 'path';
 import { SearchController } from './search.controller';
 import { SearchService } from './search.service';
 
@@ -9,9 +9,10 @@ import { SearchService } from './search.service';
     ClientsModule.register([
       {
         name: 'SEARCH_CLIENT',
-        transport: Transport.TCP,
+        transport: Transport.GRPC,
         options: {
-          port: 3003,
+          package: 'search',
+          protoPath: join(__dirname, 'proto/search.proto'),
         },
       },
     ]),

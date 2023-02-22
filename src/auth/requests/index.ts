@@ -1,4 +1,9 @@
-export { SignUpWithEmailRequest } from './sign-up-with-email.request';
-export { SignInWithEmailRequest } from './sign-in-with-email.request';
-export { SignUpWithPhoneNumberRequest } from './sign-up-with-phone-number.request';
-export { SignInWithPhoneNumberRequest } from './sign-in-with-phone-number.request';
+export {
+  SignUpWithEmailRequest,
+  SignInWithEmailRequest,
+} from './sign-with-email.request';
+export {
+  SignUpWithPhoneNumberRequest,
+  SignInWithPhoneNumberRequest,
+} from './sign-with-phone-number.request';
+export { ForgetPasswordRequest } from './forget-password.request';

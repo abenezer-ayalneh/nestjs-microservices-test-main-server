@@ -4,5 +4,12 @@
   "CONFIGURATION_NAME_SHOULD_BE_STRING": "የውቅሩ ስም የፊደላት ስብስብ መሆን አለበት",
   "CONFIGURATION_NAME_SHOULD_NOT_BE_EMPTY": "የውቅሩ ስም ባዶ መሆን የለበትም",
   "CONFIGURATION_VALUE_SHOULD_BE_STRING": "የውቅሩ ዋጋ የፊደላት ስብስብ መሆን አለበት",
-  "CONFIGURATION_VALUE_SHOULD_NOT_BE_EMPTY": "የውቅሩ ስም ባዶ መሆን የለበትም"
+  "CONFIGURATION_VALUE_SHOULD_NOT_BE_EMPTY": "የውቅሩ ስም ባዶ መሆን የለበትም",
+
+  "EMAIL_SHOULD_BE_VALID": "ኢሜሉ ትክክለኛ መሆን አለበት",
+  "EMAIL_SHOULD_NOT_BE_EMPTY": "ኢሜል ባዶ መሆን የለበትም",
+  "PASSWORD_SHOULD_NOT_BE_EMPTY": "የሚስጥር ቃሉ ባዶ መሆን የለበትም",
+  "PASSWORD_SHOULD_BE_STRING": "የሚስጥር ቃሉ የፊደላት ስብስብ መሆን አለበት",
+
+  "CREDENTIAL_INCORRECT": "ያስገቡት ማረጋገጫ ልክ አይደለም"
 }

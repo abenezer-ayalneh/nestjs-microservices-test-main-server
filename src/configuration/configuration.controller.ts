@@ -3,12 +3,11 @@ import {
   Controller,
   Get,
   HttpException,
-  Param,
   Post,
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { I18nContext, I18nService } from 'nestjs-i18n';
+import { I18nService } from 'nestjs-i18n';
 import { catchError } from 'rxjs';
 import { JwtAuthGuard } from 'src/auth/guards';
 import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';

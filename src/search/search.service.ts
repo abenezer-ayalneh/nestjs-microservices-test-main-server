@@ -1,14 +1,23 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { ClientGrpc } from '@nestjs/microservices';
+import { Observable } from 'rxjs';
 import { SearchByNameRequest } from './requests/search.request';
 
+interface SearchGrpcService {
+  searchByName(data: SearchByNameRequest): Observable<any>;
+}
 @Injectable()
 export class SearchService {
-  constructor(
-    @Inject('SEARCH_CLIENT') private readonly searchClient: ClientProxy,
-  ) {}
+  private searchGrpcService: SearchGrpcService;
+
+  constructor(@Inject('SEARCH_CLIENT') private client: ClientGrpc) {}
+
+  onModuleInit() {
+    this.searchGrpcService =
+      this.client.getService<SearchGrpcService>('SearchGrpcService');
+  }
 
   searchByName(searchRequest: SearchByNameRequest) {
-    return this.searchClient.send({ cmd: 'searchByName' }, searchRequest);
+    return this.searchGrpcService.searchByName(searchRequest);
   }
 }

@@ -16,6 +16,7 @@ import { JwtStrategy } from './strategy';
         options: {
           package: 'auth',
           protoPath: join(__dirname, 'proto/auth.proto'),
+          url: '0.0.0.0:5001',
         },
       },
     ]),

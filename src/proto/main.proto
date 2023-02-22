@@ -1,0 +1,19 @@
+syntax = "proto3";
+package main;
+
+service MainGrpcService{
+    rpc SendMail (SendMailRequst) returns (SendMailReturn) {}
+}
+
+message SendMailRequst {
+  string to = 1;
+  string from = 2;
+  string subject = 3;
+  string template = 4;
+  map<string, string> context = 5;
+}
+
+message SendMailReturn {
+  string statusCode = 1;
+  string  message = 2;
+}

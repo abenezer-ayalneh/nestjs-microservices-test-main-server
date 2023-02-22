@@ -3,20 +3,15 @@ syntax = "proto3";
 package auth;
 
 service AuthGrpcService {
-  rpc Hello (HelloName) returns (HelloReturn) {}
   rpc SignUpWithEmail (SignUpWithEmailRequest) returns (SignUpWithEmailReturn) {}
   rpc SignInWithEmail (SignUpWithEmailRequest) returns (SignUpWithEmailReturn) {}
   rpc SignUpWithPhoneNumber (SignUpWithPhoneNumberRequest) returns (SignUpWithPhoneNumberReturn) {}
+  rpc ForgetPassword (ForgetPasswordRequest) returns (ForgetPasswordReturn) {} 
+  rpc ConfirmOtp (ConfirmOtpRequest) returns (ConfirmOtpReturn) {} 
+  rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordReturn) {} 
 }
 
-message HelloName {
-  string helloName = 1;
-}
-
-message HelloReturn {
-  string helloReturn = 1;
-}
-
+// Sign up with email
 message SignUpWithEmailRequest {
   string email = 1;
   string password = 2;
@@ -26,10 +21,44 @@ message SignUpWithEmailReturn {
   string accessToken = 1;
 }
 
+// Sign up with phone number
 message SignUpWithPhoneNumberRequest {
   string accessToken = 1;
 }
 
 message SignUpWithPhoneNumberReturn {
+  string accessToken = 1;
+}
+
+// Forget password
+message ForgetPasswordRequest {
+  string email = 1;
+}
+
+message ForgetPasswordReturn {
+  string message = 1;
+  string token = 2;
+}
+
+// Confirm OTP
+message ConfirmOtpRequest {
+  string email = 1;
+  string token = 2;
+  int32 otpCode = 3;
+}
+
+message ConfirmOtpReturn {
+  string message = 1;
+}
+
+// Reset Password
+message ResetPasswordRequest {
+  string email = 1;
+  string token = 2;
+  string password = 3;
+  string confirmPassword = 4;
+}
+
+message ResetPasswordReturn {
   string accessToken = 1;
 }

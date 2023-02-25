@@ -1,3 +1,5 @@
 export class SearchByNameRequest {
-  name: string;
+  query: string;
+  applicationName: string;
+  ip: string;
 }

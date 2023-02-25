@@ -8,8 +8,9 @@ service SearchGrpcService {
 }
 
 message SearchByNameRequst {
-  string name = 1;
+  string query = 1;
   string applicationName = 2;
+  string ip = 3;
 }
 
 message SearchByNameReturn {

@@ -1,4 +1,4 @@
-import { Controller, Get, HttpException, Query } from '@nestjs/common';
+import { Controller, Get, HttpException, Ip, Query } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { catchError } from 'rxjs';
 import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
@@ -14,8 +14,8 @@ export class SearchController {
   ) {}
 
   @Get()
-  searchByName(@Query() searchRequest: SearchByNameRequest) {
-    return this.searchService.searchByName(searchRequest).pipe(
+  searchByName(@Query() searchRequest: SearchByNameRequest, @Ip() ip) {
+    return this.searchService.searchByName({ ...searchRequest, ip: ip }).pipe(
       catchError((caughtError: RpcExceptionType) => {
         throw new HttpException(
           this.i18n.t(caughtError.message),

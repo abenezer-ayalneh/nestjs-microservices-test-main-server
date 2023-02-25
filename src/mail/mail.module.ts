@@ -13,7 +13,7 @@ import { join } from 'path';
         options: {
           package: 'mail',
           protoPath: join(__dirname, 'proto/mail.proto'),
-          // url: '0.0.0.0:5000',
+          url: '0.0.0.0:5004',
         },
       },
     ]),

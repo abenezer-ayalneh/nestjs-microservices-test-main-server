@@ -1,11 +1,53 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
-
 export class StoreUserRequest {
-  @IsEmail({}, { message: 'validation.EMAIL_SHOULD_BE_VALID' })
-  @IsNotEmpty({ message: 'validation.EMAIL_SHOULD_NOT_BE_EMPTY' })
+  name: string;
   email: string;
-
-  @IsString({ message: 'validation.PASSWORD_SHOULD_BE_STRING' })
-  @IsNotEmpty({ message: 'validation.PASSWORD_SHOULD_NOT_BE_EMPTY' })
+  email_verified_at: string;
   password: string;
+  plan: number;
+  plan_expire_date: string;
+  requested_plan: number;
+  type: string;
+  avatar: string;
+  lang: string;
+  mode: string;
+  created_by: number;
+  default_pipeline: number;
+  delete_status: number;
+  is_active: boolean;
+  remember_token: string;
+  last_login_at: string;
+  created_at: string;
+  updated_at: string;
+  active_status: number;
+  dark_mode: number;
+  messenger_color: string;
+}
+export class UpdateUserRequest {
+  name: string;
+  email: string;
+  email_verified_at: string;
+  password: string;
+  plan: number;
+  plan_expire_date: string;
+  requested_plan: number;
+  type: string;
+  avatar: string;
+  lang: string;
+  mode: string;
+  created_by: number;
+  default_pipeline: number;
+  delete_status: number;
+  is_active: boolean;
+  remember_token: string;
+  last_login_at: string;
+  created_at: string;
+  updated_at: string;
+  active_status: number;
+  dark_mode: number;
+  messenger_color: string;
+}
+
+export class DeleteUserRequest {
+  id: string;
+  lang: string;
 }

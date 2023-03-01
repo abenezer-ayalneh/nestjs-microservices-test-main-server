@@ -7,7 +7,10 @@ import {
   DeleteUserRequest,
   StoreUserRequest,
   UpdateUserRequest,
-} from './requests/user.request';
+  CreateRoleRequest,
+  UpdateRoleRequest,
+  DeleteRoleRequest,
+} from '../custom/requests/user.request';
 import { UserService } from './user.service';
 
 @Controller('users')
@@ -15,6 +18,44 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService, private i18n: I18nService) {}
 
+  // Access routes
+  @Post('access/role/create')
+  createRole(@Body() request: CreateRoleRequest) {
+    return this.userService.createRole(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Post('access/role/update')
+  updateRole(@Body() request: UpdateRoleRequest) {
+    return this.userService.updateRole(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Post('access/role/delete')
+  deleteRole(@Body() request: DeleteRoleRequest) {
+    return this.userService.deleteRole(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  // User routes
   @Post('store')
   storeUser(@Body() request: StoreUserRequest) {
     return this.userService.storeUser(request).pipe(

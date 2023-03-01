@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
-import { SearchByNameRequest } from './requests/search.request';
+import { SearchByNameRequest } from '../custom/requests/search.request';
 
 interface SearchGrpcService {
   searchByName(data: SearchByNameRequest): Observable<any>;

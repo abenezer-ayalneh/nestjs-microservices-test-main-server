@@ -2,7 +2,7 @@ import { Controller, Get, HttpException, Ip, Query } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { catchError } from 'rxjs';
 import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
-import { SearchByNameRequest } from './requests/search.request';
+import { SearchByNameRequest } from '../custom/requests/search.request';
 import { SearchService } from './search.service';
 
 @Controller('search')

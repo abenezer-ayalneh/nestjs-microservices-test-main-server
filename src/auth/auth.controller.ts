@@ -11,16 +11,16 @@ import { GrpcToHttpInterceptor } from 'nestjs-grpc-exceptions';
 import { I18nService } from 'nestjs-i18n';
 import { catchError } from 'rxjs';
 import { GrpcCodeToHttpMap } from 'src/custom/maps/grpc-code-to-http.map';
-import { GrpcExceptionType } from 'src/custom/types/grpc-exception.type';
-import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
-import { AuthService } from './auth.service';
-import { ForgetPasswordRequest, SignInWithEmailRequest } from './requests';
 import {
   ConfirmOtpRequest,
+  ForgetPasswordRequest,
   ResetPasswordRequest,
-} from './requests/forget-password.request';
-import { SignUpWithEmailRequest } from './requests/sign-with-email.request';
-import { SignUpWithPhoneNumberRequest } from './requests/sign-with-phone-number.request';
+  SignInWithEmailRequest,
+  SignUpWithEmailRequest,
+  SignUpWithPhoneNumberRequest,
+} from 'src/custom/requests/auth.request';
+import { GrpcExceptionType } from 'src/custom/types/grpc-exception.type';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
@@ -30,10 +30,10 @@ export class AuthController {
   @Post('signup/email')
   async signUpWithEmail(@Body() signUpRequest: SignUpWithEmailRequest) {
     return this.authService.signUpWithEmail(signUpRequest).pipe(
-      catchError((caughtError: RpcExceptionType) => {
+      catchError((caughtError: GrpcExceptionType) => {
         throw new HttpException(
-          this.i18n.t(caughtError.message, { lang: signUpRequest.lang }),
-          caughtError.statusCode,
+          this.i18n.t(caughtError.details, { lang: signUpRequest.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
         );
       }),
     );

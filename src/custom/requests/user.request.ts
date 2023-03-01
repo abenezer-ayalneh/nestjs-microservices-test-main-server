@@ -22,6 +22,7 @@ export class StoreUserRequest {
   dark_mode: number;
   messenger_color: string;
 }
+
 export class UpdateUserRequest {
   name: string;
   email: string;
@@ -48,6 +49,24 @@ export class UpdateUserRequest {
 }
 
 export class DeleteUserRequest {
+  id: string;
+  lang: string;
+}
+
+export class CreateRoleRequest {
+  name: string;
+  description: string;
+  lang: string;
+}
+
+export class UpdateRoleRequest {
+  id: string;
+  name: string;
+  description: string;
+  lang: string;
+}
+
+export class DeleteRoleRequest {
   id: string;
   lang: string;
 }

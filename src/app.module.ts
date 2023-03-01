@@ -21,7 +21,7 @@ import { MailModule } from './mail/mail.module';
     I18nModule.forRoot({
       fallbackLanguage: 'en',
       loaderOptions: {
-        path: path.join(__dirname, '/i18n/'),
+        path: path.join(__dirname, '/custom/i18n/'),
         watch: true,
       },
       resolvers: [new QueryResolver(['lang'])],

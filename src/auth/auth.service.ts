@@ -5,12 +5,10 @@ import {
   ForgetPasswordRequest,
   SignInWithEmailRequest,
   SignUpWithEmailRequest,
-  SignUpWithPhoneNumberRequest,
-} from './requests';
-import {
   ConfirmOtpRequest,
   ResetPasswordRequest,
-} from './requests/forget-password.request';
+  SignUpWithPhoneNumberRequest,
+} from '../custom/requests/auth.request';
 
 interface AuthGrpcService {
   signUpWithEmail(data: SignUpWithEmailRequest): Observable<any>;

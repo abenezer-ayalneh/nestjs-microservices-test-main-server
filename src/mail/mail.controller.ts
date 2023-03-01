@@ -4,7 +4,7 @@ import { catchError } from 'rxjs';
 import { GrpcCodeToHttpMap } from 'src/custom/maps/grpc-code-to-http.map';
 import { GrpcExceptionType } from 'src/custom/types/grpc-exception.type';
 import { MailService } from './mail.service';
-import { MailSendRequest } from './request/mail.request';
+import { MailSendRequest } from '../custom/requests/mail.request';
 
 @Controller('mail')
 // @UseGuards(JwtAuthGuard)

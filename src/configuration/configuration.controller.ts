@@ -9,14 +9,14 @@ import {
 } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { catchError } from 'rxjs';
-import { JwtAuthGuard } from 'src/auth/guards';
+import { JwtAuthGuard } from '../custom/guards/jwt.guard';
 import { RpcExceptionType } from 'src/custom/types/rpc-exception.type';
 import { ConfigurationService } from './configuration.service';
-import { AddApplicationRequest } from './requests/application.request';
+import { AddApplicationRequest } from '../custom/requests/configuration.request';
 import {
   AddConfigurationRequest,
   GetConfigurationRequest,
-} from './requests/configuration.request';
+} from '../custom/requests/configuration.request';
 
 @UseGuards(JwtAuthGuard)
 @Controller()

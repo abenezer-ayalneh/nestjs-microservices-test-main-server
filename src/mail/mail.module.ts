@@ -12,7 +12,7 @@ import { join } from 'path';
         transport: Transport.GRPC,
         options: {
           package: 'mail',
-          protoPath: join(__dirname, 'proto/mail.proto'),
+          protoPath: join(__dirname, '../custom/proto/mail.proto'),
           url: '0.0.0.0:5004',
         },
       },

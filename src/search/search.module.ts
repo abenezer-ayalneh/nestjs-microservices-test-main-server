@@ -12,7 +12,7 @@ import { SearchService } from './search.service';
         transport: Transport.GRPC,
         options: {
           package: 'search',
-          protoPath: join(__dirname, 'proto/search.proto'),
+          protoPath: join(__dirname, '../custom/proto/search.proto'),
           url: '0.0.0.0:5003',
         },
       },

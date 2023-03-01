@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import {
   AddConfigurationRequest,
   GetConfigurationRequest,
-} from './requests/configuration.request';
+} from '../custom/requests/configuration.request';
 
 interface ConfigGrpcService {
   addConfigurationEntry(data: { name: string; value: string }): Observable<any>;

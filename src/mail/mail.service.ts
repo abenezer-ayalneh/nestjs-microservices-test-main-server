@@ -1,7 +1,7 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
-import { MailSendRequest } from './request/mail.request';
+import { MailSendRequest } from '../custom/requests/mail.request';
 
 interface MailGrpcService {
   sendMail(data: {

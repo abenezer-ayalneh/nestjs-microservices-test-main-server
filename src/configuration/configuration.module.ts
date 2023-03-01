@@ -12,7 +12,7 @@ import { join } from 'path';
         transport: Transport.GRPC,
         options: {
           package: 'config',
-          protoPath: join(__dirname, 'proto/config.proto'),
+          protoPath: join(__dirname, '../custom/proto/config.proto'),
         },
       },
     ]),

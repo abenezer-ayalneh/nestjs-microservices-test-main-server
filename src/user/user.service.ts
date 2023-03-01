@@ -2,12 +2,15 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 import {
-  CreateRoleRequest,
-  DeleteRoleRequest,
   DeleteUserRequest,
   StoreUserRequest,
-  UpdateRoleRequest,
   UpdateUserRequest,
+  UpdateRoleRequest,
+  CreateRoleRequest,
+  DeleteRoleRequest,
+  UpdatePermissionRequest,
+  CreatePermissionRequest,
+  DeletePermissionRequest,
 } from '../custom/requests/user.request';
 
 interface UserGrpcService {
@@ -17,6 +20,11 @@ interface UserGrpcService {
   createRole(data: CreateRoleRequest): Observable<any>;
   updateRole(data: UpdateRoleRequest): Observable<any>;
   deleteRole(data: DeleteRoleRequest): Observable<any>;
+  getRoles(data: object): Observable<any>;
+  createPermission(data: CreatePermissionRequest): Observable<any>;
+  updatePermission(data: UpdatePermissionRequest): Observable<any>;
+  deletePermission(data: DeletePermissionRequest): Observable<any>;
+  getPermissions(data: object): Observable<any>;
 }
 @Injectable()
 export class UserService implements OnModuleInit {
@@ -40,6 +48,26 @@ export class UserService implements OnModuleInit {
 
   deleteRole(request: DeleteRoleRequest) {
     return this.userGrpcService.deleteRole(request);
+  }
+
+  getRoles() {
+    return this.userGrpcService.getRoles({});
+  }
+
+  createPermission(request: CreatePermissionRequest) {
+    return this.userGrpcService.createPermission(request);
+  }
+
+  updatePermission(request: UpdatePermissionRequest) {
+    return this.userGrpcService.updatePermission(request);
+  }
+
+  deletePermission(request: DeletePermissionRequest) {
+    return this.userGrpcService.deletePermission(request);
+  }
+
+  getPermissions() {
+    return this.userGrpcService.getPermissions({});
   }
 
   // User services

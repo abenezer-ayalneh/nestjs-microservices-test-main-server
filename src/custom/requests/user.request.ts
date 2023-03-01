@@ -70,3 +70,21 @@ export class DeleteRoleRequest {
   id: string;
   lang: string;
 }
+
+export class CreatePermissionRequest {
+  name: string;
+  description: string;
+  lang: string;
+}
+
+export class UpdatePermissionRequest {
+  id: string;
+  name: string;
+  description: string;
+  lang: string;
+}
+
+export class DeletePermissionRequest {
+  id: string;
+  lang: string;
+}

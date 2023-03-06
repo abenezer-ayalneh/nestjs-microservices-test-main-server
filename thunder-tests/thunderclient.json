@@ -1,0 +1,462 @@
+[
+  {
+    "_id": "4f3fea96-41fa-4f4a-96a8-2e10248c79fd",
+    "colId": "dadb8928-84a5-470d-b00c-3f37c18c2aec",
+    "containerId": "",
+    "name": "Sign in with email",
+    "url": "http://localhost:3000/auth/signin/email",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-03T10:39:13.737Z",
+    "modified": "2023-03-03T10:39:13.737Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "john.doe@ablaze.labs"
+        },
+        {
+          "name": "password",
+          "value": "passpass"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "f9e99565-5faf-43e4-a8ad-a5c0128457b5",
+    "colId": "dadb8928-84a5-470d-b00c-3f37c18c2aec",
+    "containerId": "",
+    "name": "Sign up with email",
+    "url": "http://localhost:3000/auth/signup/email",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-03T10:39:13.738Z",
+    "modified": "2023-03-03T10:39:13.738Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "cd2dfac8-5e0e-4274-ac80-8aeff71a64cb",
+    "colId": "56fb2bc4-95f4-48dd-a521-849744597ca5",
+    "containerId": "",
+    "name": "Send mail",
+    "url": "http://localhost:3000/mail/send",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-03T10:39:13.765Z",
+    "modified": "2023-03-03T10:39:13.765Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"to\": \"john.doe@ablaze.labs\",\n  \"from\": \"no-reply@ablaze.labs\",\n  \"subject\": \"Welcome\",\n  \"template\": \"./hello\",\n  \"context\": {\n    \"user\": \"John Doe\",\n    \"code\": \"123456\"\n  }\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "9c6a63b5-7b6b-4240-a4c5-894c682c6261",
+    "colId": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "containerId": "",
+    "name": "Create permission",
+    "url": "{{url}}/users/access/permissions/create",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-03T10:39:13.777Z",
+    "modified": "2023-03-03T10:39:13.777Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\" : \"CanAssignPermissionsToRole\",\n  \"description\" : \"Grants assigning permissions to roles\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "d7583a7d-dfa9-4b31-8d23-b7ddafe84440",
+    "colId": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "containerId": "",
+    "name": "Update permission",
+    "url": "{{url}}/users/access/permissions/update",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-03T10:39:13.778Z",
+    "modified": "2023-03-03T10:39:13.778Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"permissions:CanCreateRole\",\n  \"description\" : \"Grants creating roles\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5d019b60-8028-4410-9d04-4f50d682ec15",
+    "colId": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "containerId": "",
+    "name": "Delete permission",
+    "url": "{{url}}/users/access/permissions/delete",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-03-03T10:39:13.779Z",
+    "modified": "2023-03-03T10:39:13.779Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"permissions:dolqborv3uywjnp5ygsy\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8e5306bb-5747-4287-ac1f-6087b4f2c236",
+    "colId": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "containerId": "",
+    "name": "Get permission",
+    "url": "{{url}}/users/access/permissions",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-03-03T10:39:13.780Z",
+    "modified": "2023-03-03T10:39:13.780Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "9f5f10e5-39d6-4cd1-831b-473f238083ec",
+    "colId": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "containerId": "",
+    "name": "Assign to user",
+    "url": "{{url}}/users/access/permissions/assign/user",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2023-03-03T10:39:13.781Z",
+    "modified": "2023-03-03T10:39:13.781Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"users:jo6a22u1ff9x15mhefyw\",\n  \"permissions\" : [\"permissions:CanAssignPermissionsToRole\"]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "e01fff40-ab89-4163-93c7-2854ca55a189",
+    "colId": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "containerId": "",
+    "name": "User has permissions",
+    "url": "{{url}}/users/access/permissions/has",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2023-03-03T10:39:13.782Z",
+    "modified": "2023-03-03T10:39:13.782Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"users:jo6a22u1ff9x15mhefyw\",\n  \"permissions\" : [\"permissions:CanCreateRole\",\"permissions:CanAssignPermissionsToRoles\"]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "19c0eb69-385f-4117-9a55-a6dae9f407d0",
+    "colId": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "containerId": "",
+    "name": "Get user permissions",
+    "url": "{{url}}/users/access/user/permissions?id=users:jo6a22u1ff9x15mhefyw",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2023-03-03T10:39:13.783Z",
+    "modified": "2023-03-03T10:39:13.783Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "users:jo6a22u1ff9x15mhefyw",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "7ebee499-981f-4121-aee9-3ce6239e650c",
+    "colId": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "containerId": "",
+    "name": "Revoke permission from user",
+    "url": "",
+    "method": "GET",
+    "sortNum": 80000,
+    "created": "2023-03-03T10:39:13.784Z",
+    "modified": "2023-03-03T10:39:13.784Z",
+    "headers": []
+  },
+  {
+    "_id": "a02692a8-02f3-426f-8582-01e8a154bd87",
+    "colId": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "containerId": "",
+    "name": "Create role",
+    "url": "{{url}}/users/access/roles/create",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-03T10:39:13.793Z",
+    "modified": "2023-03-06T12:18:38.496Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "1cf15ff3-c150-4ec4-a6b5-547ae2988f3d",
+    "colId": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "containerId": "",
+    "name": "Update role",
+    "url": "{{url}}/users/access/roles/update",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-03T10:39:13.794Z",
+    "modified": "2023-03-03T10:39:13.794Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"roles:mrxan8jiknpeex43t6sj\",\n  \"name\" : \"SuperAdmin\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "33f07bad-2e65-44dd-b5bd-766016a474a4",
+    "colId": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "containerId": "",
+    "name": "Delete role",
+    "url": "{{url}}/users/access/roles/delete",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-03-03T10:39:13.795Z",
+    "modified": "2023-03-03T10:39:13.795Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"roles:mrxan8jiknpeex43t6sj\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "432dd868-eee0-4092-92ef-211c41a87196",
+    "colId": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "containerId": "",
+    "name": "Get roles",
+    "url": "{{url}}/users/access/roles",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-03-03T10:39:13.796Z",
+    "modified": "2023-03-03T10:39:13.796Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "a327254f-da08-440c-85ca-aa5429f05656",
+    "colId": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "containerId": "",
+    "name": "Assign permission",
+    "url": "{{url}}/users/access/roles/assign/permission",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2023-03-03T10:39:13.797Z",
+    "modified": "2023-03-03T10:39:13.797Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"roles:SuperAdmin\",\n  \"permissions\" : [\"permissions:CanAssignPermissionsToRole\",\"permissions:CanCreateRole\"]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "1930a3b5-a2fb-4522-8d72-29fac6d55feb",
+    "colId": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "containerId": "",
+    "name": "Assign to user",
+    "url": "{{url}}/users/access/roles/assign/user",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2023-03-03T10:39:13.798Z",
+    "modified": "2023-03-03T10:39:13.798Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"users:jo6a22u1ff9x15mhefyw\",\n  \"roles\" : [\"roles:Admin\",\"roles:SuperAdmin\"]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "e7c3d437-3caa-4a86-a7ac-0a916691ae44",
+    "colId": "fa2e127f-3dc6-447d-b83c-890d10c81442",
+    "containerId": "",
+    "name": "Search",
+    "url": "http://localhost:3000/search/?applicationName=movies&query=shawshank redemtion",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-03-03T10:39:13.798Z",
+    "modified": "2023-03-03T10:39:13.798Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "applicationName",
+        "value": "movies",
+        "isPath": false
+      },
+      {
+        "name": "query",
+        "value": "shawshank redemtion",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "e542faf6-baa2-4e72-82fd-223b43d4832e",
+    "colId": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "containerId": "",
+    "name": "Get user roles",
+    "url": "{{url}}/users/access/user/roles?id=users:jo6a22u1ff9x15mhefyw",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2023-03-03T10:39:13.799Z",
+    "modified": "2023-03-03T10:39:13.799Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "users:jo6a22u1ff9x15mhefyw",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "5897fefe-f174-497a-a692-5f22f6ab9829",
+    "colId": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "containerId": "",
+    "name": "Revoke role from user",
+    "url": "{{url}}/users/access/roles/revoke/user",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2023-03-03T10:39:13.800Z",
+    "modified": "2023-03-03T10:39:13.800Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"users:jo6a22u1ff9x15mhefyw\",\n  \"roles\" : [\"roles:Admin\"]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "41d40840-0c99-4a40-9c8b-12c34188fe72",
+    "colId": "8d9d2d16-fe1a-4299-a1dd-678cb5836157",
+    "containerId": "",
+    "name": "Check user",
+    "url": "http://localhost:3000/users/check",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-03T10:39:13.808Z",
+    "modified": "2023-03-03T10:39:13.808Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "john.doe@ablaze.labs"
+        },
+        {
+          "name": "password",
+          "value": "passpass"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "6d31a7ba-00fd-41b7-87f4-f33ae02edefb",
+    "colId": "8d9d2d16-fe1a-4299-a1dd-678cb5836157",
+    "containerId": "",
+    "name": "Store user",
+    "url": "http://localhost:3000/users/store",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-03T10:39:13.809Z",
+    "modified": "2023-03-03T10:39:13.809Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"abebe.kebede@abalaze.labs\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5608b1a3-3df3-4731-9576-9180f271c10a",
+    "colId": "8d9d2d16-fe1a-4299-a1dd-678cb5836157",
+    "containerId": "",
+    "name": "Update user",
+    "url": "{{url}}/users/update",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-03-03T10:39:13.810Z",
+    "modified": "2023-03-03T10:39:13.810Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": \"users:xx6y7bqgxlsa47eoje7e\",\n  \"name\": \"Jane Doe McAblaze\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bd5e6fb2-eb2b-479a-95f8-e699911debf2",
+    "colId": "8d9d2d16-fe1a-4299-a1dd-678cb5836157",
+    "containerId": "",
+    "name": "Delete user",
+    "url": "{{url}}/users/delete",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2023-03-03T10:39:13.811Z",
+    "modified": "2023-03-03T10:39:13.811Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\" : \"users:sqb5e3vyqore4gyy3jfg\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]

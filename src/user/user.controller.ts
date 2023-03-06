@@ -5,8 +5,9 @@ import {
   HttpException,
   Post,
   Query,
+  UseFilters,
 } from '@nestjs/common';
-import { I18nService } from 'nestjs-i18n';
+import { I18nService, I18nValidationExceptionFilter } from 'nestjs-i18n';
 import { catchError } from 'rxjs';
 import { GrpcCodeToHttpMap } from 'src/custom/maps/grpc-code-to-http.map';
 import { GrpcExceptionType } from 'src/custom/types/grpc-exception.type';
@@ -20,6 +21,15 @@ import {
   CreatePermissionRequest,
   UpdatePermissionRequest,
   DeletePermissionRequest,
+  AssignPermissionsToRoleRequest,
+  AssignRolesToUserRequest,
+  AssignPermissionsToUserRequest,
+  GetUserRolesRequest,
+  GetUserPermissionsRequest,
+  RevokeRolesFromUserRequest,
+  RevokePermissionsFromUserRequest,
+  GetUsersViaRolesRequest,
+  GetUsersViaPermissionsRequest,
 } from '../custom/requests/user.request';
 import { UserService } from './user.service';
 
@@ -28,13 +38,49 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService, private i18n: I18nService) {}
 
-  // Access routes
+  // Role routes
+  @Post('access/roles/revoke/user')
+  revokeRolesFromUser(@Body() request: RevokeRolesFromUserRequest) {
+    return this.userService.revokeRolesFromUser(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Post('access/roles/assign/user')
+  assignRolesToUser(@Body() request: AssignRolesToUserRequest) {
+    return this.userService.assignRolesToUser(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Post('access/roles/assign/permission')
+  assignPermissionsToRole(@Body() request: AssignPermissionsToRoleRequest) {
+    return this.userService.assignPermissionsToRole(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
   @Post('access/roles/create')
   createRole(@Body() request: CreateRoleRequest) {
     return this.userService.createRole(request).pipe(
       catchError((caughtError: GrpcExceptionType) => {
         throw new HttpException(
-          this.i18n.t(caughtError.details, { lang: request.lang }),
+          caughtError.details,
           GrpcCodeToHttpMap[caughtError.code],
         );
       }),
@@ -70,6 +116,45 @@ export class UserController {
     return this.userService.getRoles().pipe(
       catchError((caughtError: GrpcExceptionType) => {
         console.log(caughtError);
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Get('access/user/roles')
+  getUserRoles(@Query() request: GetUserRolesRequest) {
+    return this.userService.getUserRoles(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        console.log(caughtError);
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Post('access/users/via/roles')
+  getUsersViaRoles(@Body() request: GetUsersViaRolesRequest) {
+    return this.userService.getUsersViaRoles(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        console.log(caughtError);
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  // Permission routes
+  @Post('access/permissions/revoke/user')
+  revokePermissionsFromUser(@Body() request: RevokePermissionsFromUserRequest) {
+    return this.userService.revokePermissionsFromUser(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
         throw new HttpException(
           this.i18n.t(caughtError.details, { lang: request.lang }),
           GrpcCodeToHttpMap[caughtError.code],
@@ -117,6 +202,56 @@ export class UserController {
   @Get('access/permissions')
   getPermissions(@Query() request: { lang: string }) {
     return this.userService.getPermissions().pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        console.log(caughtError);
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Post('access/permissions/assign/user')
+  assignPermissionsToUser(@Body() request: AssignPermissionsToUserRequest) {
+    return this.userService.assignPermissionsToUser(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Post('access/permissions/has')
+  userHasPermissions(@Body() request: AssignPermissionsToUserRequest) {
+    return this.userService.userHasPermissions(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Get('access/user/permissions')
+  getUserPermissions(@Query() request: GetUserPermissionsRequest) {
+    return this.userService.getUserPermissions(request).pipe(
+      catchError((caughtError: GrpcExceptionType) => {
+        console.log(caughtError);
+        throw new HttpException(
+          this.i18n.t(caughtError.details, { lang: request.lang }),
+          GrpcCodeToHttpMap[caughtError.code],
+        );
+      }),
+    );
+  }
+
+  @Post('access/users/via/permissions')
+  getUsersViaPermissions(@Body() request: GetUsersViaPermissionsRequest) {
+    return this.userService.getUsersViaPermissions(request).pipe(
       catchError((caughtError: GrpcExceptionType) => {
         console.log(caughtError);
         throw new HttpException(

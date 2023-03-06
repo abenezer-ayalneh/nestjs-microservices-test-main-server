@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { I18nModule, QueryResolver } from 'nestjs-i18n';
 import * as path from 'path';
@@ -10,6 +10,7 @@ import { GlobalModule } from './global/global.module';
 import { SearchModule } from './search/search.module';
 import { UserModule } from './user/user.module';
 import { MailModule } from './mail/mail.module';
+import { MicroserviceErrorInterceptor } from './custom/interceptors/microservice-error.interceptor';
 
 @Module({
   imports: [
@@ -31,8 +32,8 @@ import { MailModule } from './mail/mail.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        ttl: config.get('THROTTLE_TTL'), // The time-to-live in seconds
-        limit: config.get('THROTTLE_LIMIT'), // The number of trials in the ttl range
+        ttl: config.get<number>('THROTTLE_TTL'), // The time-to-live in seconds
+        limit: config.get<number>('THROTTLE_LIMIT'), // The number of trials in the ttl range
       }),
     }),
     UserModule,

@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "dadb8928-84a5-470d-b00c-3f37c18c2aec",
+    "colName": "Auth",
+    "created": "2023-03-03T10:39:13.699Z",
+    "sortNum": 10000,
+    "folders": []
+  },
+  {
+    "_id": "56fb2bc4-95f4-48dd-a521-849744597ca5",
+    "colName": "Mail",
+    "created": "2023-03-03T10:39:13.761Z",
+    "sortNum": 20000,
+    "folders": []
+  },
+  {
+    "_id": "9dcf72f7-0edf-472b-84ac-98a411c23c26",
+    "colName": "Permission",
+    "created": "2023-03-03T10:39:13.772Z",
+    "sortNum": 30000,
+    "folders": []
+  },
+  {
+    "_id": "e6a64d96-7647-4571-b40a-c2befca69f91",
+    "colName": "Role",
+    "created": "2023-03-03T10:39:13.785Z",
+    "sortNum": 40000,
+    "folders": []
+  },
+  {
+    "_id": "fa2e127f-3dc6-447d-b83c-890d10c81442",
+    "colName": "Search",
+    "created": "2023-03-03T10:39:13.797Z",
+    "sortNum": 50000,
+    "folders": []
+  },
+  {
+    "_id": "8d9d2d16-fe1a-4299-a1dd-678cb5836157",
+    "colName": "User",
+    "created": "2023-03-03T10:39:13.807Z",
+    "sortNum": 60000,
+    "folders": []
+  }
+]

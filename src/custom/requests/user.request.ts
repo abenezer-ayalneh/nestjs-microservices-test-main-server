@@ -1,3 +1,6 @@
+import { IsNotEmpty } from 'class-validator';
+import { i18nValidationMessage } from 'nestjs-i18n';
+
 export class StoreUserRequest {
   name: string;
   email: string;
@@ -86,5 +89,61 @@ export class UpdatePermissionRequest {
 
 export class DeletePermissionRequest {
   id: string;
+  lang: string;
+}
+
+export class AssignPermissionsToRoleRequest {
+  id: string;
+  lang: string;
+  permissions: string[];
+}
+
+export class AssignRolesToUserRequest {
+  id: string;
+  lang: string;
+  roles: string[];
+}
+
+export class AssignPermissionsToUserRequest {
+  id: string;
+  lang: string;
+  permissions: string[];
+}
+
+export class UserHasPermissionsRequest {
+  id: string;
+  lang: string;
+  permissions: string[];
+}
+
+export class GetUserRolesRequest {
+  id: string;
+  lang: string;
+}
+
+export class GetUserPermissionsRequest {
+  id: string;
+  lang: string;
+}
+
+export class RevokeRolesFromUserRequest {
+  id: string;
+  lang: string;
+  roles: string[];
+}
+
+export class RevokePermissionsFromUserRequest {
+  id: string;
+  lang: string;
+  permissions: string[];
+}
+
+export class GetUsersViaRolesRequest {
+  roles: string[];
+  lang: string;
+}
+
+export class GetUsersViaPermissionsRequest {
+  permissions: string[];
   lang: string;
 }

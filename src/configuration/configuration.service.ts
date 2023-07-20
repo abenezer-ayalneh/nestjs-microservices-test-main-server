@@ -25,7 +25,8 @@ export class ConfigurationService {
         { ...request },
       );
     } catch (error) {
-      console.log('error error error');
+      console.log(error);
+      // TODO: add error handler
     }
   }
 
